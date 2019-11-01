@@ -1,0 +1,13 @@
+---
+node_exporter_version: '0.18.1'
+node_exporter_package_filename: "node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+node_exporter_from_url: 'https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/{{ node_exporter_package_filename }}'
+node_exporter_checksum: 'sha256:b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424'
+node_exporter_dest_dir_parent: /opt
+node_exporter_service_name: node_exporter
+node_exporter_install_dir: "{{ node_exporter_dest_dir_parent }}/prometheus"
+node_exporter_binary_path: "{{ node_exporter_install_dir }}/node_exporter"
+node_exporter_username: node-exp
+node_exporter_groupname: node-exp
+node_exporter_log_file: /var/log/prometheus.log
+node_exporter_pid_file: /var/run/node_exporter.pid
