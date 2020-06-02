@@ -4,7 +4,7 @@ Install Prometheus Node Exporter on older init.d-based systems
 
 ## Requirements
 
-Designed for RedHat/CentOS 6; should work on any system that uses init.d and chkconfig.
+Designed for RedHat/CentOS 6/Debian Wheezy and Ubunty 14.04; should work on any system that uses init.d and chkconfig.
 
 
 ## Role Variables
