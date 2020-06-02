@@ -55,28 +55,28 @@
     backup: false
 
 - name: Configure init.d script
+  when: ansible_os_family == 'RedHat'
   template:
     src: templates/redhat-init.d.j2
     dest: /etc/init.d/{{ node_exporter_service_name }}
     backup: false
     mode: '0755'
-  when: ansible_os_family = 'RedHat'
 
 - name: Configure init.d script
+  when: ansible_os_family == 'Debian'
   template:
     src: templates/debian-init.d.j2
     dest: /etc/init.d/{{ node_exporter_service_name }}
     backup: false
     mode: '0755'
-  when: ansible_os_family = 'Debian'
 
 - name: add args to service file
+  when: ansible_os_family == 'Debian'
   template:
     src: templates/debian-defaults.j2
     dest: /etc/default/{{ node_exporter_service_name }}
     backup: false
     mode: '0755'
-  when: ansible_os_family = 'Debian'
 
 - name: Make sure service is running and enabled at boot
   service:
