@@ -2,8 +2,7 @@
 - name: Abort the playbook if the OS is not supported
   fail:
     msg: This OS distribution + release is not supported
-  when: ansible_os_family != 'RedHat'
-    or ansible_distribution_major_version != '6'
+  when: (ansible_os_family != 'RedHat' or ansible_distribution_major_version != '6') and (ansible_os_family != 'Debian' or ansible_major_version != '7' )
 
 - name: Download prometheus node exporter binary
   get_url:
@@ -57,10 +56,27 @@
 
 - name: Configure init.d script
   template:
-    src: templates/init.d.j2
+    src: templates/redhat-init.d.j2
     dest: /etc/init.d/{{ node_exporter_service_name }}
     backup: false
     mode: '0755'
+  when: ansible_os_family = 'RedHat'
+
+- name: Configure init.d script
+  template:
+    src: templates/debian-init.d.j2
+    dest: /etc/init.d/{{ node_exporter_service_name }}
+    backup: false
+    mode: '0755'
+  when: ansible_os_family = 'Debian'
+
+- name: add args to service file
+  template:
+    src: templates/debian-defaults.j2
+    dest: /etc/default/{{ node_exporter_service_name }}
+    backup: false
+    mode: '0755'
+  when: ansible_os_family = 'Debian'
 
 - name: Make sure service is running and enabled at boot
   service:
