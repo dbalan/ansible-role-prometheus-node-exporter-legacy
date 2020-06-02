@@ -2,7 +2,7 @@
 - name: Abort the playbook if the OS is not supported
   fail:
     msg: This OS distribution + release is not supported
-  when: (ansible_os_family != 'RedHat' or ansible_distribution_major_version != '6') and (ansible_os_family != 'Debian' or ansible_major_version != '7' )
+  when: (ansible_os_family != 'RedHat' or ansible_distribution_major_version != '6') and (ansible_os_family != 'Debian' or ansible_distribution_major_version != '7' )
 
 - name: Download prometheus node exporter binary
   get_url:
