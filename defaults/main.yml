@@ -11,3 +11,5 @@ node_exporter_username: node-exp
 node_exporter_groupname: node-exp
 node_exporter_log_file: /var/log/prometheus.log
 node_exporter_pid_file: /var/run/node_exporter.pid
+node_exporter_args: ""
+
